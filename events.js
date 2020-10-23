@@ -9,7 +9,7 @@ teste.onmouseover = function(evt){stopAndLog(evt);}
 teste.onmouseout = function(){clearInterval(timer);}
 let timer = "";
 function infiniteReset(){
-  timer = setInterval(startTimer,4000);
+  timer = setInterval(startTimer,3000);
 }
 
 function stopAndLog(evt){
