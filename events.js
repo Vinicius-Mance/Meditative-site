@@ -5,12 +5,11 @@ teste.addEventListener("click", stopAndLog);
 teste.onmousemove = function(evt){stopAndLog(evt);}
 window.onload = function(){infiniteReset();}
 window.onscroll = function(evt){stopAndLog(evt);}
-teste.onmouseover = function(){infiniteReset();}
+teste.onmouseover = function(evt){stopAndLog(evt);}
 teste.onmouseout = function(){clearInterval(timer);}
-
+let timer = "";
 function infiniteReset(){
-  var timer = setInterval(startTimer,4000);
-  window.timer = timer;
+  timer = setInterval(startTimer,4000);
 }
 
 function stopAndLog(evt){
