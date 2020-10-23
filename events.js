@@ -2,19 +2,22 @@
 let teste = document.querySelector('*');
 teste.addEventListener("keypress", stopAndLog);
 teste.addEventListener("click", stopAndLog);
-teste.addEventListener("scroll",stopAndLog);
-teste.onmousemove = function(evt){
-    stopAndLog(evt);
-}
-window.onscroll = function(evt){
-    stopAndLog(evt);
+teste.onmousemove = function(evt){stopAndLog(evt);}
+window.onload = function(){infiniteReset();}
+window.onscroll = function(evt){stopAndLog(evt);}
+teste.onmouseover = function(){infiniteReset();}
+teste.onmouseout = function(){clearInterval(timer);}
+
+function infiniteReset(){
+  var timer = setInterval(startTimer,4000);
+  window.timer = timer;
 }
 
 function stopAndLog(evt){
-    resetTimer();
-    clearInterval(timer);
-    var timer = setTimeout(startTimer,3000);
-    console.log(evt);
+  resetTimer();
+  clearInterval(timer);
+  infiniteReset();
+  console.log(evt);
 }
 
 var timerDisplay = document.querySelector('.timer');
@@ -23,14 +26,12 @@ var updatedTime;
 var difference;
 var tInterval;
 var savedTime;
-var paused = 0;
 var running = 0;
 
 function startTimer(){
   if(!running){
     startTime = new Date().getTime();
     tInterval = setInterval(getShowTime, 1);
-    paused = 0;
     running = 1;
   }
 }
@@ -57,10 +58,6 @@ function resetTimer(){
   clearInterval(tInterval);
   savedTime = 0;
   difference = 0;
-  paused = 0;
   running = 0;
   timerDisplay.innerHTML = "Don't do anything";
-  timerDisplay.style.background = "#A90000";
-  timerDisplay.style.color = "#fff";
-  timerDisplay.style.cursor = "pointer";
 }
