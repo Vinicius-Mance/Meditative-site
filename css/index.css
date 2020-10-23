@@ -4,6 +4,7 @@
   width: 100%;
   margin: auto;
   min-height: 60px;
+  position:  fixed;
 }
 
 .timer {
@@ -14,4 +15,16 @@
   text-align: center;
   color: #fff;
   background: #A90000;
+}
+
+body{
+  height: 101vh;
+  background-color: black;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+  color: inherit;
+  background-color: inherit;
 }

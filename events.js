@@ -1,18 +1,19 @@
 //pegar o input a ser pressionado
 let teste = document.querySelector('*');
-teste.addEventListener("keypress", myFunction);
-teste.addEventListener("click", myFunction);
-teste.addEventListener("scroll",myFunction);
+teste.addEventListener("keypress", stopAndLog);
+teste.addEventListener("click", stopAndLog);
+teste.addEventListener("scroll",stopAndLog);
 teste.onmousemove = function(evt){
-    myFunction(evt);
+    stopAndLog(evt);
+}
+window.onscroll = function(evt){
+    stopAndLog(evt);
 }
 
-function myFunction(evt){
-  if (evt) {
-    setTimeout(startTimer(),3000);
-  } else {
-    clearTimeout(setTimeout(startTimer(),3000));
-  }
+function stopAndLog(evt){
+    resetTimer();
+    clearInterval(timer);
+    var timer = setTimeout(startTimer,3000);
     console.log(evt);
 }
 
@@ -31,8 +32,6 @@ function startTimer(){
     tInterval = setInterval(getShowTime, 1);
     paused = 0;
     running = 1;
-    timerDisplay.style.background = "#FF0000";
-    timerDisplay.style.color = "yellow";
   }
 }
 
@@ -60,7 +59,7 @@ function resetTimer(){
   difference = 0;
   paused = 0;
   running = 0;
-  timerDisplay.innerHTML = 'Start Timer!';
+  timerDisplay.innerHTML = "Don't do anything";
   timerDisplay.style.background = "#A90000";
   timerDisplay.style.color = "#fff";
   timerDisplay.style.cursor = "pointer";
